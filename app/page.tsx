@@ -18,19 +18,33 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const scrollOpacity = Math.min(scrollY / 1000, 0.8) // Max opacity of 0.8 at 1000px scroll
+  const scrollOpacity = Math.min(scrollY / 1000, 0.8)
 
   return (
     <>
       <div
-        className="fixed inset-0 -z-10 transition-opacity duration-300"
+        className="fixed inset-0 -z-10 transition-all duration-500"
         style={{
-          background: `linear-gradient(to bottom, 
-            rgba(255, 255, 255, 1) 0%, 
-            rgba(255, 255, 255, ${1 - scrollOpacity * 0.3}) 20%,
-            rgba(100, 100, 100, ${0.1 + scrollOpacity * 0.3}) 60%,
-            rgba(50, 50, 50, ${0.2 + scrollOpacity * 0.5}) 100%
-          )`,
+          background: `
+            radial-gradient(circle at 20% 80%, rgba(120, 119, 198, ${0.1 + scrollOpacity * 0.2}) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(255, 255, 255, ${0.8 - scrollOpacity * 0.3}) 0%, transparent 50%),
+            radial-gradient(circle at 40% 40%, rgba(99, 102, 241, ${0.05 + scrollOpacity * 0.15}) 0%, transparent 50%),
+            linear-gradient(135deg, 
+              rgba(255, 255, 255, 1) 0%, 
+              rgba(248, 250, 252, ${1 - scrollOpacity * 0.2}) 25%,
+              rgba(226, 232, 240, ${0.3 + scrollOpacity * 0.4}) 70%,
+              rgba(100, 116, 139, ${0.4 + scrollOpacity * 0.4}) 100%
+            )
+          `,
+        }}
+      />
+
+      <div
+        className="fixed inset-0 -z-10 opacity-30"
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(99, 102, 241, ${0.1 + scrollOpacity * 0.1}) 1px, transparent 0)`,
+          backgroundSize: "40px 40px",
+          animation: "float 20s ease-in-out infinite",
         }}
       />
 
@@ -38,7 +52,7 @@ export default function Home() {
       <main className="min-h-screen flex flex-col items-center justify-center p-4 gap-8 relative">
         <div className="h-[10vh]"></div>
 
-        <Card className="w-full max-w-md backdrop-blur-sm bg-white/90 shadow-xl border border-white/20">
+        <Card className="w-full max-w-md backdrop-blur-md bg-white/95 shadow-2xl border border-white/30 hover:shadow-3xl transition-all duration-300">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl font-bold text-balance">Welcome to OneClick AI!! 🚀</CardTitle>
             <CardDescription>Your ultimate AI education Web page in Korean Only... (Currently)</CardDescription>
@@ -68,6 +82,13 @@ export default function Home() {
         <div className="h-[10vh]"></div>
         <TrainExampleComponent />
       </main>
+
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-10px) rotate(180deg); }
+        }
+      `}</style>
     </>
   )
 }
