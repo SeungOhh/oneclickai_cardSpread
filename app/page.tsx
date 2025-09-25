@@ -4,15 +4,41 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import TrainExampleComponent from "@/components/TrainExampleComponent"
 import Navbar from "@/components/navbar"
+import { useEffect, useState } from "react"
 
 export default function Home() {
+  const [scrollY, setScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const scrollOpacity = Math.min(scrollY / 1000, 0.8) // Max opacity of 0.8 at 1000px scroll
+
   return (
     <>
-      <Navbar />
-      <main className="min-h-screen bg-background flex flex-col items-center justify-center p-4 gap-8">
-        <div className="h-[20vh]"></div>
+      <div
+        className="fixed inset-0 -z-10 transition-opacity duration-300"
+        style={{
+          background: `linear-gradient(to bottom, 
+            rgba(255, 255, 255, 1) 0%, 
+            rgba(255, 255, 255, ${1 - scrollOpacity * 0.3}) 20%,
+            rgba(100, 100, 100, ${0.1 + scrollOpacity * 0.3}) 60%,
+            rgba(50, 50, 50, ${0.2 + scrollOpacity * 0.5}) 100%
+          )`,
+        }}
+      />
 
-        <Card className="w-full max-w-md">
+      <Navbar />
+      <main className="min-h-screen flex flex-col items-center justify-center p-4 gap-8 relative">
+        <div className="h-[10vh]"></div>
+
+        <Card className="w-full max-w-md backdrop-blur-sm bg-white/90 shadow-xl border border-white/20">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl font-bold text-balance">Welcome to OneClick AI!! 🚀</CardTitle>
             <CardDescription>Your ultimate AI education Web page in Korean Only... (Currently)</CardDescription>
