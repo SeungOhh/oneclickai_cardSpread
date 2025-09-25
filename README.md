@@ -1,5 +1,7 @@
 # write a concise README.md in one go
 cat > README.md <<'MD'
+https://v0-simple-react-app-iota.vercel.app
+
 # OneClick AI — Card Spreading Component
 
 스크롤에 따라 **부채꼴 → 그리드**로 전환되는 인터랙티브 카드 쇼케이스(Next.js 14 + TS + Tailwind).
