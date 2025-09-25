@@ -1,5 +1,4 @@
 # write a concise README.md in one go
-cat > README.md <<'MD'
 https://v0-simple-react-app-iota.vercel.app
 
 # OneClick AI — Card Spreading Component
