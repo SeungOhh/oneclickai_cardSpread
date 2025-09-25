@@ -1,148 +1,54 @@
-# OneClick AI - Card Spreading Component
+# write a concise README.md in one go
+cat > README.md <<'MD'
+# OneClick AI — Card Spreading Component
 
-A modern, interactive React application showcasing AI education projects with beautiful card animations and scroll-based interactions.
+스크롤에 따라 **부채꼴 → 그리드**로 전환되는 인터랙티브 카드 쇼케이스(Next.js 14 + TS + Tailwind).
 
-## 🚀 Features
+## ✨ Features
+- 스크롤 트리거 전환(10px 시작, 뷰포트 40% 내 완결)
+- 부채꼴(12) + 그리드(6) 카드 구성, 부드러운 트랜지션/호버
+- 반응형 레이아웃, 다크/라이트 테마
+- 다층 그라디언트 + 패턴 배경
 
-- **Dynamic Card Animation**: Smooth transition from fan layout to grid layout based on scroll position
-- **Interactive UI**: Responsive cards with hover effects and smooth transitions  
-- **Modern Design**: Beautiful gradient backgrounds with animated patterns
-- **AI Project Showcase**: 18 different AI/ML projects with custom images and descriptions
-- **Responsive Layout**: Optimized for desktop and mobile devices
-- **Dark/Light Theme**: Built-in theme switching capability
+## 🧰 Tech Stack
+Next.js 14(App Router), TypeScript, Tailwind v4, shadcn/ui(Radix), lucide-react, Geist Sans/Mono
 
-## 🛠️ Tech Stack
-
-- **Framework**: Next.js 14 with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS v4 with custom animations
-- **UI Components**: Radix UI primitives with shadcn/ui
-- **Icons**: Lucide React
-- **Fonts**: Geist Sans & Geist Mono
-
-## 📦 Installation
-
-1. Clone the repository:
-\`\`\`bash
+## ⚙️ Install & Run
 git clone https://github.com/seungohh/oneclickai_cardSpread.git
 cd oneclickai_cardSpread
-\`\`\`
+npm i
+npm run dev   # http://localhost:3000
 
-2. Install dependencies:
-\`\`\`bash
-npm install
-# or
-yarn install
-# or
-pnpm install
-\`\`\`
+## 🧩 Key Components
+- TrainExampleComponent: 스크롤 진행도에 따라 카드 각도/위치/스케일 보간(메모이제이션)
+- DynamicBackground: 다층 그라디언트·패턴, 스크롤 연동 투명도
 
-3. Run the development server:
-\`\`\`bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-\`\`\`
-
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## 🎨 Key Components
-
-### TrainExampleComponent
-The main component featuring:
-- **Fan Animation**: Cards start in a fan layout and transition to grid
-- **Scroll-based Animation**: Smooth transitions triggered by scroll position
-- **Dual Layout System**: Fan cards (12) + Grid cards (6) for optimal visual flow
-- **Performance Optimized**: Memoized calculations and smooth animations
-
-### Dynamic Background
-- **Gradient Animation**: Multi-layered radial and linear gradients
-- **Scroll-responsive**: Background opacity changes with scroll position
-- **Animated Patterns**: Floating dot patterns with CSS animations
-
-## 📁 Project Structure
-
-\`\`\`
-├── app/
-│   ├── globals.css          # Global styles and Tailwind configuration
-│   ├── layout.tsx           # Root layout with font configuration
-│   └── page.tsx             # Main page with welcome card and background
-├── components/
-│   ├── ui/                  # shadcn/ui components
-│   ├── TrainExampleComponent.tsx  # Main card animation component
-│   ├── allContentData.tsx   # AI project data and types
-│   ├── navbar.tsx           # Navigation component
-│   └── theme-provider.tsx   # Theme context provider
-└── public/
-    └── *.jpg               # AI project images (18 unique images)
-\`\`\`
-
-## 🎯 Animation System
-
-The card animation system uses a sophisticated scroll-based approach:
-
-1. **Initial State**: Cards arranged in two fan formations
-2. **Scroll Trigger**: Animation starts at 10px scroll, completes at 40% viewport height
-3. **Smooth Transitions**: Uses cubic-bezier easing for natural movement
-4. **Grid Formation**: Cards settle into a 3-column responsive grid
-
-### Animation Configuration
-\`\`\`typescript
+## 🧮 Animation Config
 const ANIMATION_CONFIG = {
   scroll: { start: 10, endRatio: 0.4 },
   fan: { totalCards: 6, totalSets: 2 },
   grid: { columns: 3, cardSpacing: 460 },
-  transition: { duration: "0.5s", easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)" }
-}
-\`\`\`
+  transition: { duration: "0.5s", easing: "cubic-bezier(0.25,0.46,0.45,0.94)" }
+};
 
-## 🎨 Styling System
+## 📁 Structure
+app/{globals.css, layout.tsx, page.tsx}
+components/{ui/, TrainExampleComponent.tsx, allContentData.tsx, navbar.tsx, theme-provider.tsx}
+public/*.jpg
 
-- **Design Tokens**: Semantic color system in globals.css
-- **Responsive Design**: Mobile-first approach with Tailwind breakpoints
-- **Component Variants**: Consistent styling with class-variance-authority
-- **Animation Library**: Custom CSS animations with Tailwind utilities
+## 📱 Breakpoints
+Mobile <768px(1열), Tablet 768–1024px(2열), Desktop >1024px(3열)
 
-## 🔗 External Links
+## 🚀 Deploy (Vercel)
+npm run build && npm run start
 
-- **OneClick AI Website**: [https://oneclickai.co.kr](https://oneclickai.co.kr)
-- **Developer GitHub**: [https://github.com/seungohh](https://github.com/seungohh)
-
-## 📱 Responsive Breakpoints
-
-- **Mobile**: < 768px - Single column layout
-- **Tablet**: 768px - 1024px - Two column layout  
-- **Desktop**: > 1024px - Three column layout
-
-## 🚀 Deployment
-
-This project is optimized for deployment on Vercel:
-
-\`\`\`bash
-npm run build
-npm run start
-\`\`\`
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+## 🔗 Links
+OneClick AI: https://oneclickai.co.kr
+GitHub: https://github.com/seungohh
 
 ## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+MIT
 
 ## 👨‍💻 Author
-
-**Seung Young Oh**
-- GitHub: [@SeungOhh](https://github.com/seungohh)
-- Website: [OneClick AI](https://oneclickai.co.kr)
-
----
-
-Built with ❤️ using Next.js and Tailwind CSS
+Seung Young Oh — @SeungOhh
+MD
